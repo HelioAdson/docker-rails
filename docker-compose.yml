@@ -23,3 +23,10 @@ services:
       - "3000:3000"
     depends_on:
       - db
+  web:
+    build: ../docker-rails-front
+    ports:
+      - "3001:3001"
+    volumes:
+      - ../docker-rails-front/src:/usr/src/app/src
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
